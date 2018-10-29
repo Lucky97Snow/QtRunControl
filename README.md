@@ -1,3 +1,1 @@
-# QtRunControl
-
-This is just a normal repository.
+# This is just a normal repository.
