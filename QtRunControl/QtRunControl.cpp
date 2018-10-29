@@ -48,7 +48,7 @@ void QtRunControl::ready() {
 }
 
 void QtRunControl::run() {
-	//TODO
+	flowThread->start();
 }
 
 void QtRunControl::pause() {

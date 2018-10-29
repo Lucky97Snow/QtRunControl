@@ -17,8 +17,8 @@ FlowThread::FlowThread(QObject *parent) : QThread(parent) {
 }
 
 void FlowThread::run() {
-
 	InterfaceResponse<long> *ir0;
+	InterfaceResponse<void> *ir1;
 	if (state == StateMachineCode::getUnstartCode()) {
 		//输出靠自己
 		ir0 = ha->joinFederation();
@@ -27,45 +27,48 @@ void FlowThread::run() {
 		}
 		emit FlowSignal(ir0->getMessage().c_str());
 		emit FlowSignal("Federate handle is " + QString::number(ir0->getData()));
-		state = StateMachineCode::getJoinedCode();
+		state++;
 		emit StateSignal(state);
 
 		//输出靠适配器自己
 		ha->initial();
-		state = StateMachineCode::getInitialedCode();
+		state++;
 		emit StateSignal(state);
 
 		//输出靠回调
 		ha->registerSynchronization(READY_TO_RUN);
 		emit FlowSignal("#Flow Thread Complete# Please start other federates...");
-		state = StateMachineCode::getRegisteredCode();
+		state++;
 		emit StateSignal(state);
 	}
+	else if (state == StateMachineCode::getRegisPointCode()) {
+		//输出靠回调
+		ha->synchronizationAchieved(READY_TO_RUN);
+		state++;
+		emit StateSignal(state);
+
+		//输出靠自己
+		ir1 = ha->enableTimePolicy(0.01);
+		emit FlowSignal(ir1->getMessage().c_str());
+		state++;
+		emit StateSignal(state);
+
+		//输出靠适配器自己
+		ha->pubAndSub();
+		state++;
+		emit StateSignal(state);
+
+		//输出靠适配器自己
+		ha->rigister();
+		state++;
+		emit StateSignal(state);
+		emit FlowSignal("#Flow Thread Complete# Please start simulation...");
+	}
 	else if (state == StateMachineCode::getRegisteredCode()) {
-		emit FlowSignal("hehe, go on go on!");
+		emit FlowSignal("haha");
 	}
 }
 
 int FlowThread::getState() {
 	return state;
 }
-
-/*	//到达同步点
-	ui.textBrowser->append("Going to synchronization point...");
-	QCoreApplication::processEvents();
-	ha->synchronizationAchieved(READY_TO_RUN);
-
-	//时间策略
-	ha->enableTimePolicy(0.01);
-	ui.textBrowser->append("Time policy enabled.");
-	QCoreApplication::processEvents();
-
-	//发布订阅
-	ha->pubAndSub();
-	ui.textBrowser->append("Published and Subscribed.");
-	QCoreApplication::processEvents();
-
-	ha->rigister();
-	ui.textBrowser->append("Object Class Registered.");
-	QCoreApplication::processEvents();
-*/

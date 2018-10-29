@@ -44,6 +44,10 @@ public:
 
 	void del();
 
+private:
+	//发给UI的事件统一接口
+	void postUIMsg(int, QString);
+
 	//=======================以下为回调==========================
 	void processData(RTI::ObjectHandle, const RTI::AttributeHandleValuePairSet&, const char*);
 

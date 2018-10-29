@@ -12,7 +12,12 @@ private:
 	static int CODE_UNSTART;
 	static int CODE_JOINED;
 	static int CODE_INITIALED;
+	static int CODE_REGISPOINT;
+	static int CODE_SYNCHED;
+	static int CODE_TIMEENABLED;
+	static int CODE_PUBANDSUB;
 	static int CODE_REGISTERED;
+
 
 public:
 	static int getUnstartCode() {
@@ -23,6 +28,18 @@ public:
 	}
 	static int getInitialedCode() {
 		return CODE_INITIALED;
+	}
+	static int getRegisPointCode() {
+		return CODE_REGISPOINT;
+	}
+	static int getSynchedCode() {
+		return CODE_SYNCHED;
+	}
+	static int getTimeEnabledCode() {
+		return CODE_TIMEENABLED;
+	}
+	static int getPubAndSubCode() {
+		return CODE_PUBANDSUB;
 	}
 	static int getRegisteredCode() {
 		return CODE_REGISTERED;
