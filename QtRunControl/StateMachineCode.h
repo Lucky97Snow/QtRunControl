@@ -17,7 +17,8 @@ private:
 	static int CODE_TIMEENABLED;
 	static int CODE_PUBANDSUB;
 	static int CODE_REGISTERED;
-
+	static int CODE_RUNNING;
+	static int CODE_END;
 
 public:
 	static int getUnstartCode() {
@@ -43,5 +44,11 @@ public:
 	}
 	static int getRegisteredCode() {
 		return CODE_REGISTERED;
+	}
+	static int getRunningCode() {
+		return CODE_RUNNING;
+	}
+	static int getEndCode() {
+		return CODE_END;
 	}
 };

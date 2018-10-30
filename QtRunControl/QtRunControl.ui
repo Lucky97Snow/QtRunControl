@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>prepare</string>
+     <string>环境准备</string>
     </property>
    </widget>
    <widget class="QTextBrowser" name="textBrowser">
@@ -53,7 +53,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>ready</string>
+     <string>联邦预备</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_3">
@@ -66,10 +66,36 @@
      </rect>
     </property>
     <property name="text">
-     <string>run</string>
+     <string>仿真运行</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>160</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>仿真暂停</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>230</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>仿真继续</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_6">
     <property name="geometry">
      <rect>
       <x>130</x>
@@ -79,33 +105,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>pause</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_5">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>110</y>
-      <width>101</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>continue</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_6">
-    <property name="geometry">
-     <rect>
-      <x>130</x>
-      <y>110</y>
-      <width>101</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>end</string>
+     <string>仿真结束</string>
     </property>
    </widget>
   </widget>
@@ -141,12 +141,12 @@
    <slot>prepare()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>175</x>
-     <y>123</y>
+     <x>29</x>
+     <y>90</y>
     </hint>
     <hint type="destinationlabel">
-     <x>15</x>
-     <y>112</y>
+     <x>40</x>
+     <y>220</y>
     </hint>
    </hints>
   </connection>
@@ -157,12 +157,12 @@
    <slot>ready()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>50</x>
-     <y>217</y>
+     <x>130</x>
+     <y>90</y>
     </hint>
     <hint type="destinationlabel">
-     <x>14</x>
-     <y>208</y>
+     <x>168</x>
+     <y>213</y>
     </hint>
    </hints>
   </connection>
@@ -173,12 +173,12 @@
    <slot>run()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>46</x>
-     <y>337</y>
+     <x>29</x>
+     <y>140</y>
     </hint>
     <hint type="destinationlabel">
-     <x>17</x>
-     <y>343</y>
+     <x>41</x>
+     <y>259</y>
     </hint>
    </hints>
   </connection>
@@ -189,12 +189,12 @@
    <slot>pause()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>61</x>
-     <y>474</y>
+     <x>130</x>
+     <y>140</y>
     </hint>
     <hint type="destinationlabel">
-     <x>15</x>
-     <y>474</y>
+     <x>167</x>
+     <y>250</y>
     </hint>
    </hints>
   </connection>
@@ -205,12 +205,28 @@
    <slot>continuE()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>61</x>
-     <y>617</y>
+     <x>27</x>
+     <y>183</y>
     </hint>
     <hint type="destinationlabel">
-     <x>14</x>
-     <y>621</y>
+     <x>44</x>
+     <y>303</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_6</sender>
+   <signal>clicked()</signal>
+   <receiver>QtRunControlClass</receiver>
+   <slot>end()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>130</x>
+     <y>170</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>172</x>
+     <y>285</y>
     </hint>
    </hints>
   </connection>
@@ -221,5 +237,6 @@
   <slot>run()</slot>
   <slot>pause()</slot>
   <slot>continuE()</slot>
+  <slot>end()</slot>
  </slots>
 </ui>

@@ -33,6 +33,7 @@ public slots:
 	void run();
 	void pause();
 	void continuE();
+	void end();
 
 private slots:
 	//处理线程传回的信号信息

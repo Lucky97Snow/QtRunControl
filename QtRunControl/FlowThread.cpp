@@ -18,7 +18,7 @@ FlowThread::FlowThread(QObject *parent) : QThread(parent) {
 
 void FlowThread::run() {
 	InterfaceResponse<long> *ir0;
-	InterfaceResponse<void> *ir1;
+	InterfaceResponse<bool> *ir1;
 	if (state == StateMachineCode::getUnstartCode()) {
 		//Êä³ö¿¿×Ô¼º
 		ir0 = ha->joinFederation();
@@ -65,7 +65,12 @@ void FlowThread::run() {
 		emit FlowSignal("#Flow Thread Complete# Please start simulation...");
 	}
 	else if (state == StateMachineCode::getRegisteredCode()) {
-		emit FlowSignal("haha");
+		state++;
+		emit StateSignal(state);
+		ha->simulate();
+		state++;
+		emit StateSignal(state);
+		emit FlowSignal("#Flow Thread Complete# Simulation Ends.");
 	}
 }
 

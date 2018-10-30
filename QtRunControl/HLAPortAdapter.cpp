@@ -104,9 +104,10 @@ void HLAPortAdapter::simulate() {
 	while (true) {
 		if (isEnd) {
 			del();
-			resignFederation();
-			//由运行管理器销毁
-			destroyFederation();
+			//TODO：不能撤销的bug，显示PAUSE里的两个句柄没del
+			//ha->resignFederation();
+			//所以也消毁不了
+			postUIMsg(7777, ha->destroyFederation()->getMessage().c_str());
 			break;
 		}
 		if (isPause) {
@@ -114,8 +115,8 @@ void HLAPortAdapter::simulate() {
 				//暂停状态
 			}
 		}
-		postUIMsg(7777, advanceTime(1.0)->getMessage().c_str());
-		//advanceTime(1.0);
+		//postUIMsg(7777, advanceTime(1.0)->getMessage().c_str());
+		advanceTime(1.0);
 	}
 }
 

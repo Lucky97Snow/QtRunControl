@@ -9,7 +9,7 @@
 
 #include "HLAPortAdapter.h"
 
-//其实只是给创建联邦用的
+//创建联邦、设置暂停、设置继续和结束
 extern HLAPortAdapter *ha;
 
 QtRunControl::QtRunControl(QWidget *parent) : QMainWindow(parent) {
@@ -35,7 +35,7 @@ void QtRunControl::prepare() {
 	//create必须是主线程执行！！！！！！！！！！
 	ui.textBrowser->append("Preparing Environment, Please Wait...");
 	QCoreApplication::processEvents();
-	InterfaceResponse<void> *ir = ha->createFederation();
+	InterfaceResponse<bool> *ir = ha->createFederation();
 	if (!ir->isSuccessful()) {
 		ui.textBrowser->append("HERE IS AN ERROR");
 	}
@@ -52,9 +52,13 @@ void QtRunControl::run() {
 }
 
 void QtRunControl::pause() {
-	//TODO:准备是在县城里设置状态为
+	ha->isPause = true;
 }
 
 void QtRunControl::continuE() {
-	//TODO
+	ha->isPause = false;
+}
+
+void QtRunControl::end() {
+	ha->isEnd = true;
 }

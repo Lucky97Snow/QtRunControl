@@ -27,3 +27,5 @@ int StateMachineCode::CODE_SYNCHED = 7005;
 int StateMachineCode::CODE_TIMEENABLED = 7006;
 int StateMachineCode::CODE_PUBANDSUB = 7007;
 int StateMachineCode::CODE_REGISTERED = 7008;
+int StateMachineCode::CODE_RUNNING = 7009;
+int StateMachineCode::CODE_END = 7010;
